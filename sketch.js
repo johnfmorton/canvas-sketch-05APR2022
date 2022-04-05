@@ -1,39 +1,79 @@
 // Import the library
 const canvasSketch = require('canvas-sketch');
 
+// Grab P5.js from npm
+const p5 = require('p5');
+
+// Attach p5.js it to global scope
+new p5()
+
 // Specify some output parameters
 const settings = {
+  // Tell canvas-sketch we're using p5.js
+  p5: true,
+  // Turn on a render loop (it's off by default in canvas-sketch)
+  animate: true,
+  // We can specify WebGL context if we want
+  context: 'webgl',
+  // Optional loop duration
+  duration: 6,
+  // Enable MSAA
+  attributes: {
+    antialias: true
+  },
   // The [ width, height ] of the artwork in pixels
-  dimensions: [ 300, 250 ]
+  dimensions: [ 600, 500 ]
 };
 
-const startXScale = Math.random();
+
+// Optionally preload before you load the sketch
+window.preload = () => {
+  // Preload sounds/images/etc...
+};
 
 // Start the sketch
-const sketch = () => {
+// const sketch = () => {
 
 
 
-  return (props) => {
-    // Destructure what we need from props
-    const { context, width, height } = props;
+//   return (props) => {// Inside this is a bit like p5.js 'setup' function
+//     // ...
 
-    const offsetX = (width/5) * startXScale;
-    const offsetY = (height/5) * startXScale;
+//     // Attach events to window to receive them
+//     window.mouseClicked = () => {
+//       console.log('Mouse clicked');
+//     };
 
-    // Fill the canvas with #03a4c1
-    context.fillStyle = '#03a4c1';
-    context.fillRect(0, 0, width, height);
-
-    // Now draw a white rectangle in the center
-    context.strokeStyle = '#00ff0020';
-    context.lineWidth = 4;
-    context.strokeRect((width - offsetX) / 4, (height - offsetY) / 4, (width - offsetX) / 2, (height - offsetY) / 2);
-    // context.strokeStyle = 'rbga(25,0,0,0.5)';
-    context.strokeStyle = '#ff00a350';
-    context.strokeRect((width + offsetX) / 4, (height + offsetY) / 4, (width + offsetX) / 2, (height + offsetY) / 2);
-  };
-};
+//     // Return a renderer to 'draw' the p5.js content
+//     return ({ playhead, width, height }) => {
+//       // Draw with p5.js things
+//       clear()
+//       normalMaterial();
+//       rotateX(playhead * 2 * PI);
+//       rotateZ(playhead * 2 * PI);
+//       cylinder(20, 50);
+//     };
+//   }
+// };
 
 // Start the sketch with parameters
-canvasSketch(sketch, settings);
+canvasSketch(() => {
+  // Inside this is a bit like p5.js 'setup' function
+    // ...
+
+    // Attach events to window to receive them
+    window.mouseClicked = () => {
+      console.log('Mouse clicked');
+    };
+
+    // Return a renderer to 'draw' the p5.js content
+    return ({ playhead, width, height }) => {
+      // Draw with p5.js things
+      clear()
+      normalMaterial();
+      rotateX(playhead * 2 * PI);
+      rotateZ(playhead * 2 * PI);
+      cylinder(20, 50);
+    };
+
+}, settings);
