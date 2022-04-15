@@ -6,7 +6,7 @@ const settings = {
   pixelated: true,
 };
 
-const colors = ['#ff00ff', '#00ffff', '#ff0000', '#00ff00', '#0000ff'];
+const colors = ['#ff00ff', '#00ffff', '#ff0000', '#00ff00', '#0000ff', '#abed32'];
 
 const getRandomColor = () => {
   const index = Math.floor(Math.random() * colors.length);
@@ -45,7 +45,7 @@ const sketch = ({ render, exportFrame }) => {
 
 
   const exportButton = document.getElementById('export-button');
-  exportButton.addEventListener('click', () => exportFrame({ commit: true }));
+  exportButton.addEventListener('click', () => exportFrame());
 
   return ({ context, width, height }) => {
     context.fillStyle = 'white';
