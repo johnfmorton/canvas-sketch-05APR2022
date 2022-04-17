@@ -6,7 +6,17 @@ const settings = {
   pixelated: true,
 };
 
-const colors = ['#ff00ff', '#00ffff', '#ff0000', '#00ff00', '#0000ff', '#abed32'];
+// const colors = ['#ff00ff', '#00ffff', '#ff0000', '#00ff00', '#0000ff', '#abed32'];
+
+const colors = [
+  "#f2c5d2",
+  "#e5bb57",
+  "#9c96cd",
+  "#76b995",
+  "#70a7c5",
+  "#f8e6d1",
+  "#dfbcab"
+];
 
 const getRandomColor = () => {
   const index = Math.floor(Math.random() * colors.length);
@@ -53,8 +63,8 @@ const sketch = ({ render, exportFrame }) => {
 
     let grid = [];
 
-    let cols = 24;
-    let rows = 20;
+    let cols = 12;
+    let rows = 10;
 
     for (let i = 0; i < cols; i++) {
       grid.push([]);
@@ -69,10 +79,22 @@ const sketch = ({ render, exportFrame }) => {
       context.fillRect(x * width / cols, y * height / rows, width / cols, height / rows);
     }
 
+    const drawCircle = (x, y) => {
+      let radius = width / cols / 2;
+      context.beginPath();
+      context.arc(x * width/1 / cols/1, y * height/1 / rows/1, width/1 / cols/1, 0, 2 * Math.PI);
+      // context.arc(x * width / cols, y * height / rows, width / cols, 0, 2 * Math.PI);
+      context.fillStyle = getRandomColor();
+      context.fill();
+    }
+
     for (let i = 0; i < cols; i++) {
       for (let j = 0; j < rows; j++) {
         if (grid[i][j] === 1) {
           drawCell(i, j);
+
+        } else {
+          drawCircle(i, j);
         }
       }
     }

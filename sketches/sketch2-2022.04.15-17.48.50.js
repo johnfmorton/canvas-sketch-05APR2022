@@ -4,7 +4,17 @@ const settings = {
   dimensions: [ 300, 250 ]
 };
 
-const colors = ['#ff00ff', '#00ffff', '#ff0000', '#00ff00', '#0000ff'];
+// const colors = ['#ff00ff', '#00ffff', '#ff0000', '#00ff00', '#0000ff'];
+
+const colors = [
+  "#f2c5d2",
+  "#e5bb57",
+  "#9c96cd",
+  "#76b995",
+  "#70a7c5",
+  "#f8e6d1",
+  "#dfbcab"
+];
 
 const getRandomColor = () => {
   const index = Math.floor(Math.random() * colors.length);
